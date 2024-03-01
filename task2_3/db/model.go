@@ -1,10 +1,11 @@
 package db
 
 type Product struct {
-	Name string
-	Mark float32
+	Name       string
+	Mark       float32
+	Categories []Category
 }
 
-type Categories struct {
+type Category struct {
 	Name string
 }

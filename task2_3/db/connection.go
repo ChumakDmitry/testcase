@@ -24,7 +24,7 @@ func InitPG(ctx context.Context, cfg config.Config) (*Postgres, error) {
 
 	pgInstance = &Postgres{db}
 
-	if err := pgInstance.db.Ping(ctx); err != nil {
+	if err = pgInstance.db.Ping(ctx); err != nil {
 		panic(err)
 	}
 
