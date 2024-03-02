@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Result</title>
+</head>
+<body>
+    <div class="maindiv">
+        <h1>Get Result test</h1>
+        <p>Input length array</p>
+        <div class="input_button">
+            <input type="number" id="length_array">
+            <button onclick="TakeResult()">Submit</button>
+        </div>
+        <button onclick="CheckResult()">Check</button>
+        <p class="progress"></p>
+        <br>
+        <p>Data: {{.Result}}</p>
+    </div>
+</body>
+<script>
+    const TakeResult = () => {
+        const length = Number(document.getElementById("length_array").value)
+        if (!Number.isInteger(length)) {
+            alert("Bad input")
+        } else {
+            window.location = "http://127.0.0.1:4003/calc" + length
+        }
+    }
+
+    const CheckResult = async () => {
+        textfield = document.getElementsByClassName("progress")[0]
+        let response = await fetch("http://127.0.0.1:4003/check")
+
+        if (response.ok) {
+            let resp = await response.json()
+            textfield.innerHTML = resp.progress
+        }
+    }
+</script>
+</html>
