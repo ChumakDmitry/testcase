@@ -2,7 +2,6 @@ package server
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"html/template"
 	"log"
@@ -88,16 +87,15 @@ func (s *APIServer) handleCalc(w http.ResponseWriter, r *http.Request) {
 func (s *APIServer) handleCheck(w http.ResponseWriter, r *http.Request) {
 	resp := make(map[string]string, 1)
 	resp["progress"] = internal.CheckProgress()
-	fmt.Println(1)
+
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Println(2)
+
 	respJson, err := json.Marshal(resp)
 	if err != nil {
 		log.Printf("error to marshal: %+v\n", err)
 	}
-	fmt.Println(3)
+
 	w.Write(respJson)
-	fmt.Println(w)
 	return
 }
